@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - sylius_dev@localhost" uuid="755cd473-f53b-4bad-bac5-ac75e3c5f9a9">
+    <database-info product="MySQL" version="5.5.44-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="sylius_dev"/>
+    <table name="ext_log_entries" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="action" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="logged_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="object_id" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="object_class" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="version" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="data" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="log_class_lookup_idx" unique="false" columns="object_class"/>
+      <index name="log_date_lookup_idx" unique="false" columns="logged_at"/>
+      <index name="log_user_lookup_idx" unique="false" columns="username"/>
+      <index name="log_version_lookup_idx" unique="false" columns="object_id,object_class,version"/>
+    </table>
+    <table name="phpcr_binarydata" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="node_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="property_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="workspace_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="data" sqlType="LONGBLOB" precision="2147483647" scale="0" nullable="false" jdbcType="-4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="UNIQ_37E65615460D9FD7413BC13C1AC10DC4E7087E10" unique="true" columns="node_id,property_name,workspace_name,idx"/>
+    </table>
+    <table name="phpcr_internal_index_types" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="node_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="type,node_id"/>
+    </table>
+    <table name="phpcr_namespaces" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="prefix" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="uri" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="prefix"/>
+    </table>
+    <table name="phpcr_nodes" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="path" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="parent" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="local_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="namespace" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="workspace_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="identifier" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="props" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="numerical_props" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="depth" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sort_order" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="UNIQ_A4624AD7772E836A1AC10DC4" unique="true" columns="identifier,workspace_name"/>
+      <index name="UNIQ_A4624AD7B548B0F1AC10DC4" unique="true" columns="path,workspace_name"/>
+      <index name="IDX_A4624AD73D8E604F" unique="false" columns="parent"/>
+      <index name="IDX_A4624AD7623C14D533E16B56" unique="false" columns="local_name,namespace"/>
+      <index name="IDX_A4624AD78CDE5729" unique="false" columns="type"/>
+    </table>
+    <table name="phpcr_nodes_references" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="source_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="source_property_name" sqlType="VARCHAR" precision="220" scale="0" nullable="false" jdbcType="12"/>
+      <column name="target_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="source_id,source_property_name,target_id"/>
+      <index name="IDX_F3BF7E1158E0B66" unique="false" columns="target_id"/>
+    </table>
+    <table name="phpcr_nodes_weakreferences" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="source_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="source_property_name" sqlType="VARCHAR" precision="220" scale="0" nullable="false" jdbcType="12"/>
+      <column name="target_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="source_id,source_property_name,target_id"/>
+      <index name="IDX_F0E4F6FA158E0B66" unique="false" columns="target_id"/>
+    </table>
+    <table name="phpcr_type_childs" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="node_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="protected" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="auto_created" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="mandatory" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="on_parent_version" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="primary_types" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="default_type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="phpcr_type_nodes" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="node_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="supertypes" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="is_abstract" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="is_mixin" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="queryable" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="orderable_child_nodes" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="primary_item" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="node_type_id"/>
+      <index name="UNIQ_34B0A8095E237E06" unique="true" columns="name"/>
+    </table>
+    <table name="phpcr_type_props" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="node_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="protected" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="auto_created" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="mandatory" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="on_parent_version" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="multiple" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="fulltext_searchable" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="query_orderable" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="required_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="query_operators" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="default_value" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="node_type_id,name"/>
+    </table>
+    <table name="phpcr_workspaces" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="name"/>
+    </table>
+    <table name="sylius_address" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="country_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="province_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="street" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="company" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="postcode" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_B97FF0589395C3F3" columns="customer_id" ref-table="sylius_customer" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="2" deferrability="2"/>
+      <foreign-key name="FK_B97FF058E946114A" columns="province_id" ref-table="sylius_province" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_B97FF058F92F3E70" columns="country_id" ref-table="sylius_country" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_7E82D5E64D4CFF2B" table="sylius_customer" schema="" catalog="sylius_dev" columns="shipping_address_id"/>
+      <exported-key name="FK_7E82D5E679D0C0E4" table="sylius_customer" schema="" catalog="sylius_dev" columns="billing_address_id"/>
+      <exported-key name="FK_6196A1F94D4CFF2B" table="sylius_order" schema="" catalog="sylius_dev" columns="shipping_address_id"/>
+      <exported-key name="FK_6196A1F979D0C0E4" table="sylius_order" schema="" catalog="sylius_dev" columns="billing_address_id"/>
+      <index name="IDX_B97FF0589395C3F3" unique="false" columns="customer_id"/>
+      <index name="IDX_B97FF058E946114A" unique="false" columns="province_id"/>
+      <index name="IDX_B97FF058F92F3E70" unique="false" columns="country_id"/>
+    </table>
+    <table name="sylius_adjustment" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="order_item_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="label" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="is_neutral" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="is_locked" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="origin_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="origin_type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_ACA6E0F2E415FB15" columns="order_item_id" ref-table="sylius_order_item" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ACA6E0F28D9F6D38" columns="order_id" ref-table="sylius_order" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_ACA6E0F28D9F6D38" unique="false" columns="order_id"/>
+      <index name="IDX_ACA6E0F2E415FB15" unique="false" columns="order_item_id"/>
+    </table>
+    <table name="sylius_api_access_token" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="client_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="token" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="expires_at" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="scope" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_7D83AA7FA76ED395" columns="user_id" ref-table="sylius_user" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_7D83AA7F19EB6921" columns="client_id" ref-table="sylius_api_client" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UNIQ_7D83AA7F5F37A13B" unique="true" columns="token"/>
+      <index name="IDX_7D83AA7F19EB6921" unique="false" columns="client_id"/>
+      <index name="IDX_7D83AA7FA76ED395" unique="false" columns="user_id"/>
+    </table>
+    <table name="sylius_api_auth_code" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="client_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="token" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="redirect_uri" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="expires_at" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="scope" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_C8404179A76ED395" columns="user_id" ref-table="sylius_user" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_C840417919EB6921" columns="client_id" ref-table="sylius_api_client" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UNIQ_C84041795F37A13B" unique="true" columns="token"/>
+      <index name="IDX_C840417919EB6921" unique="false" columns="client_id"/>
+      <index name="IDX_C8404179A76ED395" unique="false" columns="user_id"/>
+    </table>
+    <table name="sylius_api_client" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="random_id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="redirect_uris" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="secret" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="allowed_grant_types" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_7D83AA7F19EB6921" table="sylius_api_access_token" schema="" catalog="sylius_dev" columns="client_id"/>
+      <exported-key name="FK_C840417919EB6921" table="sylius_api_auth_code" schema="" catalog="sylius_dev" columns="client_id"/>
+      <exported-key name="FK_4457852519EB6921" table="sylius_api_refresh_token" schema="" catalog="sylius_dev" columns="client_id"/>
+    </table>
+    <table name="sylius_api_refresh_token" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="client_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="token" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="expires_at" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="scope" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_44578525A76ED395" columns="user_id" ref-table="sylius_user" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_4457852519EB6921" columns="client_id" ref-table="sylius_api_client" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UNIQ_445785255F37A13B" unique="true" columns="token"/>
+      <index name="IDX_4457852519EB6921" unique="false" columns="client_id"/>
+      <index name="IDX_44578525A76ED395" unique="false" columns="user_id"/>
+    </table>
+    <table name="sylius_channel" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="color" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="url" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_AE491F9372F5A1AA" table="sylius_channel_currencies" schema="" catalog="sylius_dev" columns="channel_id"/>
+      <exported-key name="FK_786B7A8472F5A1AA" table="sylius_channel_locales" schema="" catalog="sylius_dev" columns="channel_id"/>
+      <exported-key name="FK_B0C0002B72F5A1AA" table="sylius_channel_payment_methods" schema="" catalog="sylius_dev" columns="channel_id"/>
+      <exported-key name="FK_6858B18E72F5A1AA" table="sylius_channel_shipping_methods" schema="" catalog="sylius_dev" columns="channel_id"/>
+      <exported-key name="FK_4BE9652E72F5A1AA" table="sylius_channel_taxonomy" schema="" catalog="sylius_dev" columns="channel_id"/>
+      <exported-key name="FK_6196A1F972F5A1AA" table="sylius_order" schema="" catalog="sylius_dev" columns="channel_id"/>
+      <exported-key name="FK_F9EF269B72F5A1AA" table="sylius_product_channels" schema="" catalog="sylius_dev" columns="channel_id"/>
+      <exported-key name="FK_1A044F6472F5A1AA" table="sylius_promotion_channels" schema="" catalog="sylius_dev" columns="channel_id"/>
+      <index name="UNIQ_16C8119E77153098" unique="true" columns="code"/>
+    </table>
+    <table name="sylius_channel_currencies" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="channel_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="currency_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="channel_id,currency_id"/>
+      <foreign-key name="FK_AE491F9338248176" columns="currency_id" ref-table="sylius_currency" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_AE491F9372F5A1AA" columns="channel_id" ref-table="sylius_channel" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_AE491F9338248176" unique="false" columns="currency_id"/>
+      <index name="IDX_AE491F9372F5A1AA" unique="false" columns="channel_id"/>
+    </table>
+    <table name="sylius_channel_locales" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="channel_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="locale_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="channel_id,locale_id"/>
+      <foreign-key name="FK_786B7A84E559DFD1" columns="locale_id" ref-table="sylius_locale" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_786B7A8472F5A1AA" columns="channel_id" ref-table="sylius_channel" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_786B7A8472F5A1AA" unique="false" columns="channel_id"/>
+      <index name="IDX_786B7A84E559DFD1" unique="false" columns="locale_id"/>
+    </table>
+    <table name="sylius_channel_payment_methods" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="channel_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="payment_method_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="channel_id,payment_method_id"/>
+      <foreign-key name="FK_B0C0002B5AA1164F" columns="payment_method_id" ref-table="sylius_payment_method" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_B0C0002B72F5A1AA" columns="channel_id" ref-table="sylius_channel" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_B0C0002B5AA1164F" unique="false" columns="payment_method_id"/>
+      <index name="IDX_B0C0002B72F5A1AA" unique="false" columns="channel_id"/>
+    </table>
+    <table name="sylius_channel_shipping_methods" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="channel_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="shipping_method_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="channel_id,shipping_method_id"/>
+      <foreign-key name="FK_6858B18E5F7D6850" columns="shipping_method_id" ref-table="sylius_shipping_method" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_6858B18E72F5A1AA" columns="channel_id" ref-table="sylius_channel" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_6858B18E5F7D6850" unique="false" columns="shipping_method_id"/>
+      <index name="IDX_6858B18E72F5A1AA" unique="false" columns="channel_id"/>
+    </table>
+    <table name="sylius_channel_taxonomy" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="channel_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="taxonomy_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="channel_id,taxonomy_id"/>
+      <foreign-key name="FK_4BE9652E9557E6F6" columns="taxonomy_id" ref-table="sylius_taxonomy" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_4BE9652E72F5A1AA" columns="channel_id" ref-table="sylius_channel" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_4BE9652E72F5A1AA" unique="false" columns="channel_id"/>
+      <index name="IDX_4BE9652E9557E6F6" unique="false" columns="taxonomy_id"/>
+    </table>
+    <table name="sylius_contact_request" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="topic_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="message" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_8B0BBF201F55203D" columns="topic_id" ref-table="sylius_contact_topic" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_8B0BBF201F55203D" unique="false" columns="topic_id"/>
+    </table>
+    <table name="sylius_contact_topic" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_8B0BBF201F55203D" table="sylius_contact_request" schema="" catalog="sylius_dev" columns="topic_id"/>
+      <exported-key name="FK_6681216F2C2AC5D3" table="sylius_contact_topic_translation" schema="" catalog="sylius_dev" columns="translatable_id"/>
+    </table>
+    <table name="sylius_contact_topic_translation" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="translatable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="locale" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_6681216F2C2AC5D3" columns="translatable_id" ref-table="sylius_contact_topic" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="sylius_contact_topic_translation_uniq_trans" unique="true" columns="translatable_id,locale"/>
+      <index name="IDX_6681216F2C2AC5D3" unique="false" columns="translatable_id"/>
+    </table>
+    <table name="sylius_country" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="iso_name" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_B97FF058F92F3E70" table="sylius_address" schema="" catalog="sylius_dev" columns="country_id"/>
+      <exported-key name="FK_B5618FE4F92F3E70" table="sylius_province" schema="" catalog="sylius_dev" columns="country_id"/>
+      <exported-key name="FK_E8B5ABF3F92F3E70" table="sylius_zone_member" schema="" catalog="sylius_dev" columns="country_id"/>
+      <index name="UNIQ_E74256BF4B80EAC0" unique="true" columns="iso_name"/>
+      <index name="IDX_E74256BF4B80EAC0" unique="false" columns="iso_name"/>
+    </table>
+    <table name="sylius_credit_card" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="token" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="cardholder_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="security_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="expiry_month" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="expiry_year" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_D9191BD47048FD0F" table="sylius_payment" schema="" catalog="sylius_dev" columns="credit_card_id"/>
+    </table>
+    <table name="sylius_currency" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="code" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12"/>
+      <column name="exchange_rate" sqlType="DECIMAL" precision="10" scale="5" nullable="false" jdbcType="3"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_AE491F9338248176" table="sylius_channel_currencies" schema="" catalog="sylius_dev" columns="currency_id"/>
+      <index name="UNIQ_96EDD3D077153098" unique="true" columns="code"/>
+    </table>
+    <table name="sylius_customer" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="billing_address_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="shipping_address_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email_canonical" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="birthday" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="gender" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12" def="J3Un"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="deleted_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="currency" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_7E82D5E64D4CFF2B" columns="shipping_address_id" ref-table="sylius_address" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="2" deferrability="2"/>
+      <foreign-key name="FK_7E82D5E679D0C0E4" columns="billing_address_id" ref-table="sylius_address" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="2" deferrability="2"/>
+      <exported-key name="FK_B97FF0589395C3F3" table="sylius_address" schema="" catalog="sylius_dev" columns="customer_id"/>
+      <exported-key name="FK_7FCF9B059395C3F3" table="sylius_customer_group" schema="" catalog="sylius_dev" columns="customer_id"/>
+      <exported-key name="FK_6196A1F99395C3F3" table="sylius_order" schema="" catalog="sylius_dev" columns="customer_id"/>
+      <exported-key name="FK_569A33C09395C3F3" table="sylius_user" schema="" catalog="sylius_dev" columns="customer_id"/>
+      <index name="UNIQ_7E82D5E64D4CFF2B" unique="true" columns="shipping_address_id"/>
+      <index name="UNIQ_7E82D5E679D0C0E4" unique="true" columns="billing_address_id"/>
+    </table>
+    <table name="sylius_customer_group" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="customer_id,group_id"/>
+      <foreign-key name="FK_7FCF9B05FE54D947" columns="group_id" ref-table="sylius_group" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_7FCF9B059395C3F3" columns="customer_id" ref-table="sylius_customer" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_7FCF9B059395C3F3" unique="false" columns="customer_id"/>
+      <index name="IDX_7FCF9B05FE54D947" unique="false" columns="group_id"/>
+    </table>
+    <table name="sylius_email" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="template" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="subject" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sender_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sender_address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="content" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="UNIQ_732D4E1577153098" unique="true" columns="code"/>
+    </table>
+    <table name="sylius_group" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_7FCF9B05FE54D947" table="sylius_customer_group" schema="" catalog="sylius_dev" columns="group_id"/>
+    </table>
+    <table name="sylius_inventory_unit" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="stockable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="order_item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="shipment_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="inventory_state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="shipping_state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_4A2769867BE036FC" columns="shipment_id" ref-table="sylius_shipment" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="2" deferrability="2"/>
+      <foreign-key name="FK_4A276986E415FB15" columns="order_item_id" ref-table="sylius_order_item" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_4A276986FBE8234" columns="stockable_id" ref-table="sylius_product_variant" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_4A2769867BE036FC" unique="false" columns="shipment_id"/>
+      <index name="IDX_4A276986E415FB15" unique="false" columns="order_item_id"/>
+      <index name="IDX_4A276986FBE8234" unique="false" columns="stockable_id"/>
+    </table>
+    <table name="sylius_locale" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="code" sqlType="VARCHAR" precision="12" scale="0" nullable="false" jdbcType="12"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_786B7A84E559DFD1" table="sylius_channel_locales" schema="" catalog="sylius_dev" columns="locale_id"/>
+      <index name="UNIQ_7BA1286477153098" unique="true" columns="code"/>
+    </table>
+    <table name="sylius_order" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="channel_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="shipping_address_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="billing_address_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="completed_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="items_total" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="adjustments_total" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="total" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="deleted_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="expires_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="currency" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12"/>
+      <column name="checkout_state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="payment_state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="shipping_state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_6196A1F99395C3F3" columns="customer_id" ref-table="sylius_customer" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_6196A1F94D4CFF2B" columns="shipping_address_id" ref-table="sylius_address" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_6196A1F972F5A1AA" columns="channel_id" ref-table="sylius_channel" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_6196A1F979D0C0E4" columns="billing_address_id" ref-table="sylius_address" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_ACA6E0F28D9F6D38" table="sylius_adjustment" schema="" catalog="sylius_dev" columns="order_id"/>
+      <exported-key name="FK_8EA9CF098D9F6D38" table="sylius_order_comment" schema="" catalog="sylius_dev" columns="order_id"/>
+      <exported-key name="FK_5757A18E8D9F6D38" table="sylius_order_identity" schema="" catalog="sylius_dev" columns="order_id"/>
+      <exported-key name="FK_77B587ED8D9F6D38" table="sylius_order_item" schema="" catalog="sylius_dev" columns="order_id"/>
+      <exported-key name="FK_D9191BD48D9F6D38" table="sylius_payment" schema="" catalog="sylius_dev" columns="order_id"/>
+      <exported-key name="FK_D58E3BC48D9F6D38" table="sylius_promotion_coupon_order" schema="" catalog="sylius_dev" columns="order_id"/>
+      <exported-key name="FK_BF9CF6FB8D9F6D38" table="sylius_promotion_order" schema="" catalog="sylius_dev" columns="order_id"/>
+      <exported-key name="FK_FD707B338D9F6D38" table="sylius_shipment" schema="" catalog="sylius_dev" columns="order_id"/>
+      <index name="UNIQ_6196A1F996901F54" unique="true" columns="number"/>
+      <index name="IDX_6196A1F94D4CFF2B" unique="false" columns="shipping_address_id"/>
+      <index name="IDX_6196A1F972F5A1AA" unique="false" columns="channel_id"/>
+      <index name="IDX_6196A1F979D0C0E4" unique="false" columns="billing_address_id"/>
+      <index name="IDX_6196A1F99395C3F3" unique="false" columns="customer_id"/>
+    </table>
+    <table name="sylius_order_comment" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="comment" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="notify_customer" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="author" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_8EA9CF098D9F6D38" columns="order_id" ref-table="sylius_order" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_8EA9CF098D9F6D38" unique="false" columns="order_id"/>
+    </table>
+    <table name="sylius_order_identity" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_5757A18E8D9F6D38" columns="order_id" ref-table="sylius_order" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_5757A18E8D9F6D38" unique="false" columns="order_id"/>
+    </table>
+    <table name="sylius_order_item" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="variant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="unit_price" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="adjustments_total" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="total" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="is_immutable" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_77B587ED3B69A9AF" columns="variant_id" ref-table="sylius_product_variant" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_77B587ED8D9F6D38" columns="order_id" ref-table="sylius_order" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_ACA6E0F2E415FB15" table="sylius_adjustment" schema="" catalog="sylius_dev" columns="order_item_id"/>
+      <exported-key name="FK_4A276986E415FB15" table="sylius_inventory_unit" schema="" catalog="sylius_dev" columns="order_item_id"/>
+      <exported-key name="FK_49838ED1E415FB15" table="sylius_promotion_order_item" schema="" catalog="sylius_dev" columns="order_item_id"/>
+      <index name="IDX_77B587ED3B69A9AF" unique="false" columns="variant_id"/>
+      <index name="IDX_77B587ED8D9F6D38" unique="false" columns="order_id"/>
+    </table>
+    <table name="sylius_payment" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="method_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="credit_card_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="currency" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="details" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6anNvbl9hcnJheSk="/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_D9191BD48D9F6D38" columns="order_id" ref-table="sylius_order" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_D9191BD419883967" columns="method_id" ref-table="sylius_payment_method" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="2" deferrability="2"/>
+      <foreign-key name="FK_D9191BD47048FD0F" columns="credit_card_id" ref-table="sylius_credit_card" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="2" deferrability="2"/>
+      <index name="IDX_D9191BD419883967" unique="false" columns="method_id"/>
+      <index name="IDX_D9191BD47048FD0F" unique="false" columns="credit_card_id"/>
+      <index name="IDX_D9191BD48D9F6D38" unique="false" columns="order_id"/>
+    </table>
+    <table name="sylius_payment_config" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="config" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6anNvbl9hcnJheSk="/>
+      <column name="payment_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="factory_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="sylius_payment_method" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="gateway" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="environment" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="is_enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="fee_calculator" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fee_calculator_configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_B0C0002B5AA1164F" table="sylius_channel_payment_methods" schema="" catalog="sylius_dev" columns="payment_method_id"/>
+      <exported-key name="FK_D9191BD419883967" table="sylius_payment" schema="" catalog="sylius_dev" columns="method_id"/>
+    </table>
+    <table name="sylius_payment_security_token" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="hash" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="details" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1" remarks="KERDMlR5cGU6b2JqZWN0KQ=="/>
+      <column name="after_url" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="target_url" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="payment_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="hash"/>
+    </table>
+    <table name="sylius_permission" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="tree_left" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tree_right" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tree_level" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_C5160A4E727ACA70" columns="parent_id" ref-table="sylius_permission" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="FK_C5160A4E727ACA70" table="sylius_permission" schema="" catalog="sylius_dev" columns="parent_id"/>
+      <exported-key name="FK_45CEE9B8FED90CCA" table="sylius_role_permission" schema="" catalog="sylius_dev" columns="permission_id"/>
+      <index name="IDX_C5160A4E727ACA70" unique="false" columns="parent_id"/>
+    </table>
+    <table name="sylius_product" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="archetype_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="tax_category_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="shipping_category_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="restricted_zone" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="available_on" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="deleted_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="variant_selection_method" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_677B9B74E64AACD3" columns="restricted_zone" ref-table="sylius_zone" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_677B9B74732C6CC7" columns="archetype_id" ref-table="sylius_product_archetype" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_677B9B749DF894ED" columns="tax_category_id" ref-table="sylius_tax_category" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_677B9B749E2D1A41" columns="shipping_category_id" ref-table="sylius_shipping_category" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_8A053E544584665A" table="sylius_product_attribute_value" schema="" catalog="sylius_dev" columns="product_id"/>
+      <exported-key name="FK_F9EF269B4584665A" table="sylius_product_channels" schema="" catalog="sylius_dev" columns="product_id"/>
+      <exported-key name="FK_2B5FF0094584665A" table="sylius_product_options" schema="" catalog="sylius_dev" columns="product_id"/>
+      <exported-key name="FK_169C6CD94584665A" table="sylius_product_taxon" schema="" catalog="sylius_dev" columns="product_id"/>
+      <exported-key name="FK_105A9082C2AC5D3" table="sylius_product_translation" schema="" catalog="sylius_dev" columns="translatable_id"/>
+      <exported-key name="FK_A29B5234584665A" table="sylius_product_variant" schema="" catalog="sylius_dev" columns="product_id"/>
+      <index name="IDX_677B9B74732C6CC7" unique="false" columns="archetype_id"/>
+      <index name="IDX_677B9B749DF894ED" unique="false" columns="tax_category_id"/>
+      <index name="IDX_677B9B749E2D1A41" unique="false" columns="shipping_category_id"/>
+      <index name="IDX_677B9B74E64AACD3" unique="false" columns="restricted_zone"/>
+    </table>
+    <table name="sylius_product_archetype" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_A4001B52727ACA70" columns="parent_id" ref-table="sylius_product_archetype" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_677B9B74732C6CC7" table="sylius_product" schema="" catalog="sylius_dev" columns="archetype_id"/>
+      <exported-key name="FK_A4001B52727ACA70" table="sylius_product_archetype" schema="" catalog="sylius_dev" columns="parent_id"/>
+      <exported-key name="FK_97763342732C6CC7" table="sylius_product_archetype_attribute" schema="" catalog="sylius_dev" columns="archetype_id"/>
+      <exported-key name="FK_BCE763A7FE884EAC" table="sylius_product_archetype_option" schema="" catalog="sylius_dev" columns="product_archetype_id"/>
+      <exported-key name="FK_E0BA36D2C2AC5D3" table="sylius_product_archetype_translation" schema="" catalog="sylius_dev" columns="translatable_id"/>
+      <index name="UNIQ_A4001B5277153098" unique="true" columns="code"/>
+      <index name="IDX_A4001B52727ACA70" unique="false" columns="parent_id"/>
+    </table>
+    <table name="sylius_product_archetype_attribute" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="archetype_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="attribute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="archetype_id,attribute_id"/>
+      <foreign-key name="FK_97763342B6E62EFA" columns="attribute_id" ref-table="sylius_product_attribute" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_97763342732C6CC7" columns="archetype_id" ref-table="sylius_product_archetype" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_97763342732C6CC7" unique="false" columns="archetype_id"/>
+      <index name="IDX_97763342B6E62EFA" unique="false" columns="attribute_id"/>
+    </table>
+    <table name="sylius_product_archetype_option" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="product_archetype_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="option_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="product_archetype_id,option_id"/>
+      <foreign-key name="FK_BCE763A7A7C41D6F" columns="option_id" ref-table="sylius_product_option" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_BCE763A7FE884EAC" columns="product_archetype_id" ref-table="sylius_product_archetype" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_BCE763A7A7C41D6F" unique="false" columns="option_id"/>
+      <index name="IDX_BCE763A7FE884EAC" unique="false" columns="product_archetype_id"/>
+    </table>
+    <table name="sylius_product_archetype_translation" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="translatable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="locale" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_E0BA36D2C2AC5D3" columns="translatable_id" ref-table="sylius_product_archetype" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="sylius_product_archetype_translation_uniq_trans" unique="true" columns="translatable_id,locale"/>
+      <index name="IDX_E0BA36D2C2AC5D3" unique="false" columns="translatable_id"/>
+    </table>
+    <table name="sylius_product_attribute" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_97763342B6E62EFA" table="sylius_product_archetype_attribute" schema="" catalog="sylius_dev" columns="attribute_id"/>
+      <exported-key name="FK_93850EBA2C2AC5D3" table="sylius_product_attribute_translation" schema="" catalog="sylius_dev" columns="translatable_id"/>
+      <exported-key name="FK_8A053E54B6E62EFA" table="sylius_product_attribute_value" schema="" catalog="sylius_dev" columns="attribute_id"/>
+    </table>
+    <table name="sylius_product_attribute_translation" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="translatable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="presentation" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="locale" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_93850EBA2C2AC5D3" columns="translatable_id" ref-table="sylius_product_attribute" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="sylius_product_attribute_translation_uniq_trans" unique="true" columns="translatable_id,locale"/>
+      <index name="IDX_93850EBA2C2AC5D3" unique="false" columns="translatable_id"/>
+    </table>
+    <table name="sylius_product_attribute_value" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="attribute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="value" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_8A053E54B6E62EFA" columns="attribute_id" ref-table="sylius_product_attribute" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_8A053E544584665A" columns="product_id" ref-table="sylius_product" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_8A053E544584665A" unique="false" columns="product_id"/>
+      <index name="IDX_8A053E54B6E62EFA" unique="false" columns="attribute_id"/>
+    </table>
+    <table name="sylius_product_channels" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="channel_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="product_id,channel_id"/>
+      <foreign-key name="FK_F9EF269B72F5A1AA" columns="channel_id" ref-table="sylius_channel" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_F9EF269B4584665A" columns="product_id" ref-table="sylius_product" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_F9EF269B4584665A" unique="false" columns="product_id"/>
+      <index name="IDX_F9EF269B72F5A1AA" unique="false" columns="channel_id"/>
+    </table>
+    <table name="sylius_product_option" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_BCE763A7A7C41D6F" table="sylius_product_archetype_option" schema="" catalog="sylius_dev" columns="option_id"/>
+      <exported-key name="FK_CBA491AD2C2AC5D3" table="sylius_product_option_translation" schema="" catalog="sylius_dev" columns="translatable_id"/>
+      <exported-key name="FK_F7FF7D4BA7C41D6F" table="sylius_product_option_value" schema="" catalog="sylius_dev" columns="option_id"/>
+      <exported-key name="FK_2B5FF009A7C41D6F" table="sylius_product_options" schema="" catalog="sylius_dev" columns="option_id"/>
+    </table>
+    <table name="sylius_product_option_translation" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="translatable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="presentation" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="locale" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_CBA491AD2C2AC5D3" columns="translatable_id" ref-table="sylius_product_option" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="sylius_product_option_translation_uniq_trans" unique="true" columns="translatable_id,locale"/>
+      <index name="IDX_CBA491AD2C2AC5D3" unique="false" columns="translatable_id"/>
+    </table>
+    <table name="sylius_product_option_value" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="option_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="value" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_F7FF7D4BA7C41D6F" columns="option_id" ref-table="sylius_product_option" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="FK_76CDAFA1D957CA06" table="sylius_product_variant_option_value" schema="" catalog="sylius_dev" columns="option_value_id"/>
+      <index name="IDX_F7FF7D4BA7C41D6F" unique="false" columns="option_id"/>
+    </table>
+    <table name="sylius_product_options" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="option_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="product_id,option_id"/>
+      <foreign-key name="FK_2B5FF009A7C41D6F" columns="option_id" ref-table="sylius_product_option" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_2B5FF0094584665A" columns="product_id" ref-table="sylius_product" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_2B5FF0094584665A" unique="false" columns="product_id"/>
+      <index name="IDX_2B5FF009A7C41D6F" unique="false" columns="option_id"/>
+    </table>
+    <table name="sylius_product_taxon" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="taxon_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="product_id,taxon_id"/>
+      <foreign-key name="FK_169C6CD9DE13F470" columns="taxon_id" ref-table="sylius_taxon" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_169C6CD94584665A" columns="product_id" ref-table="sylius_product" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_169C6CD94584665A" unique="false" columns="product_id"/>
+      <index name="IDX_169C6CD9DE13F470" unique="false" columns="taxon_id"/>
+    </table>
+    <table name="sylius_product_translation" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="translatable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="meta_keywords" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="meta_description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="short_description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="locale" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_105A9082C2AC5D3" columns="translatable_id" ref-table="sylius_product" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="sylius_product_translation_uniq_trans" unique="true" columns="translatable_id,locale"/>
+      <index name="UNIQ_105A908989D9B62" unique="true" columns="slug"/>
+      <index name="IDX_105A9082C2AC5D3" unique="false" columns="translatable_id"/>
+    </table>
+    <table name="sylius_product_variant" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="is_master" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="presentation" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="deleted_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="available_on" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="sku" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="on_hold" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="on_hand" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sold" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="available_on_demand" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="price" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pricing_calculator" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pricing_configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="width" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="height" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="depth" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="weight" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_A29B5234584665A" columns="product_id" ref-table="sylius_product" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="FK_4A276986FBE8234" table="sylius_inventory_unit" schema="" catalog="sylius_dev" columns="stockable_id"/>
+      <exported-key name="FK_77B587ED3B69A9AF" table="sylius_order_item" schema="" catalog="sylius_dev" columns="variant_id"/>
+      <exported-key name="FK_C6B77D5D3B69A9AF" table="sylius_product_variant_image" schema="" catalog="sylius_dev" columns="variant_id"/>
+      <exported-key name="FK_76CDAFA13B69A9AF" table="sylius_product_variant_option_value" schema="" catalog="sylius_dev" columns="variant_id"/>
+      <index name="IDX_A29B5234584665A" unique="false" columns="product_id"/>
+      <index name="IDX_A29B52398D2DD99" unique="false" columns="sold"/>
+      <index name="IDX_A29B523F9038C4" unique="false" columns="sku"/>
+    </table>
+    <table name="sylius_product_variant_image" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="variant_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="path" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_C6B77D5D3B69A9AF" columns="variant_id" ref-table="sylius_product_variant" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_C6B77D5D3B69A9AF" unique="false" columns="variant_id"/>
+    </table>
+    <table name="sylius_product_variant_option_value" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="variant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="option_value_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="variant_id,option_value_id"/>
+      <foreign-key name="FK_76CDAFA1D957CA06" columns="option_value_id" ref-table="sylius_product_option_value" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_76CDAFA13B69A9AF" columns="variant_id" ref-table="sylius_product_variant" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_76CDAFA13B69A9AF" unique="false" columns="variant_id"/>
+      <index name="IDX_76CDAFA1D957CA06" unique="false" columns="option_value_id"/>
+    </table>
+    <table name="sylius_promotion" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="priority" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="exclusive" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="usage_limit" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="used" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="coupon_based" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="starts_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ends_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="deleted_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_933D0915139DF194" table="sylius_promotion_action" schema="" catalog="sylius_dev" columns="promotion_id"/>
+      <exported-key name="FK_1A044F64139DF194" table="sylius_promotion_channels" schema="" catalog="sylius_dev" columns="promotion_id"/>
+      <exported-key name="FK_B04EBA85139DF194" table="sylius_promotion_coupon" schema="" catalog="sylius_dev" columns="promotion_id"/>
+      <exported-key name="FK_BF9CF6FB139DF194" table="sylius_promotion_order" schema="" catalog="sylius_dev" columns="promotion_id"/>
+      <exported-key name="FK_49838ED1139DF194" table="sylius_promotion_order_item" schema="" catalog="sylius_dev" columns="promotion_id"/>
+      <exported-key name="FK_2C188EA8139DF194" table="sylius_promotion_rule" schema="" catalog="sylius_dev" columns="promotion_id"/>
+    </table>
+    <table name="sylius_promotion_action" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="promotion_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_933D0915139DF194" columns="promotion_id" ref-table="sylius_promotion" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_933D0915139DF194" unique="false" columns="promotion_id"/>
+    </table>
+    <table name="sylius_promotion_channels" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="promotion_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="channel_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="promotion_id,channel_id"/>
+      <foreign-key name="FK_1A044F6472F5A1AA" columns="channel_id" ref-table="sylius_channel" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_1A044F64139DF194" columns="promotion_id" ref-table="sylius_promotion" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_1A044F64139DF194" unique="false" columns="promotion_id"/>
+      <index name="IDX_1A044F6472F5A1AA" unique="false" columns="channel_id"/>
+    </table>
+    <table name="sylius_promotion_coupon" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="promotion_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="usage_limit" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="used" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="expires_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="deleted_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="per_customer_usage_limit" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_B04EBA85139DF194" columns="promotion_id" ref-table="sylius_promotion" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_D58E3BC417B24436" table="sylius_promotion_coupon_order" schema="" catalog="sylius_dev" columns="promotion_coupon_id"/>
+      <index name="IDX_B04EBA85139DF194" unique="false" columns="promotion_id"/>
+    </table>
+    <table name="sylius_promotion_coupon_order" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="promotion_coupon_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="order_id,promotion_coupon_id"/>
+      <foreign-key name="FK_D58E3BC417B24436" columns="promotion_coupon_id" ref-table="sylius_promotion_coupon" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_D58E3BC48D9F6D38" columns="order_id" ref-table="sylius_order" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_D58E3BC417B24436" unique="false" columns="promotion_coupon_id"/>
+      <index name="IDX_D58E3BC48D9F6D38" unique="false" columns="order_id"/>
+    </table>
+    <table name="sylius_promotion_order" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="promotion_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="order_id,promotion_id"/>
+      <foreign-key name="FK_BF9CF6FB139DF194" columns="promotion_id" ref-table="sylius_promotion" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_BF9CF6FB8D9F6D38" columns="order_id" ref-table="sylius_order" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_BF9CF6FB139DF194" unique="false" columns="promotion_id"/>
+      <index name="IDX_BF9CF6FB8D9F6D38" unique="false" columns="order_id"/>
+    </table>
+    <table name="sylius_promotion_order_item" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="order_item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="promotion_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="order_item_id,promotion_id"/>
+      <foreign-key name="FK_49838ED1139DF194" columns="promotion_id" ref-table="sylius_promotion" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_49838ED1E415FB15" columns="order_item_id" ref-table="sylius_order_item" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_49838ED1139DF194" unique="false" columns="promotion_id"/>
+      <index name="IDX_49838ED1E415FB15" unique="false" columns="order_item_id"/>
+    </table>
+    <table name="sylius_promotion_rule" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="promotion_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_2C188EA8139DF194" columns="promotion_id" ref-table="sylius_promotion" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_2C188EA8139DF194" unique="false" columns="promotion_id"/>
+    </table>
+    <table name="sylius_province" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="country_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="iso_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_B5618FE4F92F3E70" columns="country_id" ref-table="sylius_country" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_B97FF058E946114A" table="sylius_address" schema="" catalog="sylius_dev" columns="province_id"/>
+      <exported-key name="FK_E8B5ABF3E946114A" table="sylius_zone_member" schema="" catalog="sylius_dev" columns="province_id"/>
+      <index name="IDX_B5618FE4F92F3E70" unique="false" columns="country_id"/>
+    </table>
+    <table name="sylius_report" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="renderer" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="renderer_configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="data_fetcher" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="data_fetcher_configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="UNIQ_FE0E997877153098" unique="true" columns="code"/>
+    </table>
+    <table name="sylius_role" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="security_roles" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="tree_left" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tree_right" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tree_level" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_8C606FE3727ACA70" columns="parent_id" ref-table="sylius_role" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="FK_8C606FE3727ACA70" table="sylius_role" schema="" catalog="sylius_dev" columns="parent_id"/>
+      <exported-key name="FK_45CEE9B8D60322AC" table="sylius_role_permission" schema="" catalog="sylius_dev" columns="role_id"/>
+      <exported-key name="FK_1DA28211D60322AC" table="sylius_user_role" schema="" catalog="sylius_dev" columns="role_id"/>
+      <index name="IDX_8C606FE3727ACA70" unique="false" columns="parent_id"/>
+    </table>
+    <table name="sylius_role_permission" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="role_id,permission_id"/>
+      <foreign-key name="FK_45CEE9B8FED90CCA" columns="permission_id" ref-table="sylius_permission" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_45CEE9B8D60322AC" columns="role_id" ref-table="sylius_role" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_45CEE9B8D60322AC" unique="false" columns="role_id"/>
+      <index name="IDX_45CEE9B8FED90CCA" unique="false" columns="permission_id"/>
+    </table>
+    <table name="sylius_search_index" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="entity" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="tags" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="fulltext_search_idx" unique="false" columns="item_id"/>
+      <index name="item_id_entity_idx" unique="false" columns="item_id,entity"/>
+      <index name="item_id_idx" unique="false" columns="item_id"/>
+    </table>
+    <table name="sylius_search_log" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="search_string" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="remote_address" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="sylius_sequence" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="UNIQ_AD3D8CC48CDE5729" unique="true" columns="type"/>
+    </table>
+    <table name="sylius_settings_parameter" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="namespace" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1" remarks="KERDMlR5cGU6b2JqZWN0KQ=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="name_idx" unique="true" columns="namespace,name"/>
+    </table>
+    <table name="sylius_shipment" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="method_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="state" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="tracking" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_FD707B338D9F6D38" columns="order_id" ref-table="sylius_order" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_FD707B3319883967" columns="method_id" ref-table="sylius_shipping_method" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_4A2769867BE036FC" table="sylius_inventory_unit" schema="" catalog="sylius_dev" columns="shipment_id"/>
+      <index name="IDX_FD707B3319883967" unique="false" columns="method_id"/>
+      <index name="IDX_FD707B338D9F6D38" unique="false" columns="order_id"/>
+    </table>
+    <table name="sylius_shipping_category" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_677B9B749E2D1A41" table="sylius_product" schema="" catalog="sylius_dev" columns="shipping_category_id"/>
+      <exported-key name="FK_5FB0EE1112469DE2" table="sylius_shipping_method" schema="" catalog="sylius_dev" columns="category_id"/>
+    </table>
+    <table name="sylius_shipping_method" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="category_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="zone_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="category_requirement" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="calculator" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="is_enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_5FB0EE119F2C3FAB" columns="zone_id" ref-table="sylius_zone" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_5FB0EE1112469DE2" columns="category_id" ref-table="sylius_shipping_category" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_6858B18E5F7D6850" table="sylius_channel_shipping_methods" schema="" catalog="sylius_dev" columns="shipping_method_id"/>
+      <exported-key name="FK_FD707B3319883967" table="sylius_shipment" schema="" catalog="sylius_dev" columns="method_id"/>
+      <exported-key name="FK_2B37DB3D2C2AC5D3" table="sylius_shipping_method_translation" schema="" catalog="sylius_dev" columns="translatable_id"/>
+      <exported-key name="FK_3BC30EE019883967" table="sylius_shipping_rule" schema="" catalog="sylius_dev" columns="method_id"/>
+      <index name="IDX_5FB0EE1112469DE2" unique="false" columns="category_id"/>
+      <index name="IDX_5FB0EE119F2C3FAB" unique="false" columns="zone_id"/>
+    </table>
+    <table name="sylius_shipping_method_translation" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="translatable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="locale" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_2B37DB3D2C2AC5D3" columns="translatable_id" ref-table="sylius_shipping_method" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="sylius_shipping_method_translation_uniq_trans" unique="true" columns="translatable_id,locale"/>
+      <index name="IDX_2B37DB3D2C2AC5D3" unique="false" columns="translatable_id"/>
+    </table>
+    <table name="sylius_shipping_rule" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="method_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="configuration" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_3BC30EE019883967" columns="method_id" ref-table="sylius_shipping_method" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_3BC30EE019883967" unique="false" columns="method_id"/>
+    </table>
+    <table name="sylius_tax_category" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_677B9B749DF894ED" table="sylius_product" schema="" catalog="sylius_dev" columns="tax_category_id"/>
+      <exported-key name="FK_3CD86B2E12469DE2" table="sylius_tax_rate" schema="" catalog="sylius_dev" columns="category_id"/>
+    </table>
+    <table name="sylius_tax_rate" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="category_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="zone_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="amount" sqlType="DECIMAL" precision="10" scale="5" nullable="false" jdbcType="3"/>
+      <column name="included_in_price" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="calculator" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_3CD86B2E9F2C3FAB" columns="zone_id" ref-table="sylius_zone" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_3CD86B2E12469DE2" columns="category_id" ref-table="sylius_tax_category" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_3CD86B2E12469DE2" unique="false" columns="category_id"/>
+      <index name="IDX_3CD86B2E9F2C3FAB" unique="false" columns="zone_id"/>
+    </table>
+    <table name="sylius_taxon" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="taxonomy_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="tree_left" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tree_right" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tree_level" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="deleted_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="path" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_CFD811CA727ACA70" columns="parent_id" ref-table="sylius_taxon" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_CFD811CA9557E6F6" columns="taxonomy_id" ref-table="sylius_taxonomy" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="2" deferrability="2"/>
+      <exported-key name="FK_169C6CD9DE13F470" table="sylius_product_taxon" schema="" catalog="sylius_dev" columns="taxon_id"/>
+      <exported-key name="FK_CFD811CA727ACA70" table="sylius_taxon" schema="" catalog="sylius_dev" columns="parent_id"/>
+      <exported-key name="FK_1487DFCF2C2AC5D3" table="sylius_taxon_translation" schema="" catalog="sylius_dev" columns="translatable_id"/>
+      <exported-key name="FK_2A9E3D279066886" table="sylius_taxonomy" schema="" catalog="sylius_dev" columns="root_id"/>
+      <index name="IDX_CFD811CA727ACA70" unique="false" columns="parent_id"/>
+      <index name="IDX_CFD811CA9557E6F6" unique="false" columns="taxonomy_id"/>
+    </table>
+    <table name="sylius_taxon_translation" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="translatable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="permalink" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="locale" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_1487DFCF2C2AC5D3" columns="translatable_id" ref-table="sylius_taxon" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="permalink_uidx" unique="true" columns="locale,permalink"/>
+      <index name="sylius_taxon_translation_uniq_trans" unique="true" columns="translatable_id,locale"/>
+      <index name="IDX_1487DFCF2C2AC5D3" unique="false" columns="translatable_id"/>
+    </table>
+    <table name="sylius_taxonomy" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="root_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_2A9E3D279066886" columns="root_id" ref-table="sylius_taxon" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="2" deferrability="2"/>
+      <exported-key name="FK_4BE9652E9557E6F6" table="sylius_channel_taxonomy" schema="" catalog="sylius_dev" columns="taxonomy_id"/>
+      <exported-key name="FK_CFD811CA9557E6F6" table="sylius_taxon" schema="" catalog="sylius_dev" columns="taxonomy_id"/>
+      <exported-key name="FK_9F3F90D92C2AC5D3" table="sylius_taxonomy_translation" schema="" catalog="sylius_dev" columns="translatable_id"/>
+      <index name="IDX_2A9E3D279066886" unique="false" columns="root_id"/>
+    </table>
+    <table name="sylius_taxonomy_translation" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="translatable_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="locale" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_9F3F90D92C2AC5D3" columns="translatable_id" ref-table="sylius_taxonomy" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="sylius_taxonomy_translation_uniq_trans" unique="true" columns="translatable_id,locale"/>
+      <index name="IDX_9F3F90D92C2AC5D3" unique="false" columns="translatable_id"/>
+    </table>
+    <table name="sylius_user" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username_canonical" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="salt" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_login" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="confirmation_token" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password_requested_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="locked" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="expires_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="credentials_expire_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="roles" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1" remarks="KERDMlR5cGU6YXJyYXkp"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="deleted_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_569A33C09395C3F3" columns="customer_id" ref-table="sylius_customer" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_7D83AA7FA76ED395" table="sylius_api_access_token" schema="" catalog="sylius_dev" columns="user_id"/>
+      <exported-key name="FK_C8404179A76ED395" table="sylius_api_auth_code" schema="" catalog="sylius_dev" columns="user_id"/>
+      <exported-key name="FK_44578525A76ED395" table="sylius_api_refresh_token" schema="" catalog="sylius_dev" columns="user_id"/>
+      <exported-key name="FK_C3471B78A76ED395" table="sylius_user_oauth" schema="" catalog="sylius_dev" columns="user_id"/>
+      <exported-key name="FK_1DA28211A76ED395" table="sylius_user_role" schema="" catalog="sylius_dev" columns="user_id"/>
+      <index name="UNIQ_569A33C09395C3F3" unique="true" columns="customer_id"/>
+    </table>
+    <table name="sylius_user_oauth" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="provider" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="identifier" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="access_token" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_C3471B78A76ED395" columns="user_id" ref-table="sylius_user" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="user_provider" unique="true" columns="user_id,provider"/>
+      <index name="IDX_C3471B78A76ED395" unique="false" columns="user_id"/>
+    </table>
+    <table name="sylius_user_role" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="user_id,role_id"/>
+      <foreign-key name="FK_1DA28211D60322AC" columns="role_id" ref-table="sylius_role" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_1DA28211A76ED395" columns="user_id" ref-table="sylius_user" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="IDX_1DA28211A76ED395" unique="false" columns="user_id"/>
+      <index name="IDX_1DA28211D60322AC" unique="false" columns="role_id"/>
+    </table>
+    <table name="sylius_zone" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="scope" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_677B9B74E64AACD3" table="sylius_product" schema="" catalog="sylius_dev" columns="restricted_zone"/>
+      <exported-key name="FK_5FB0EE119F2C3FAB" table="sylius_shipping_method" schema="" catalog="sylius_dev" columns="zone_id"/>
+      <exported-key name="FK_3CD86B2E9F2C3FAB" table="sylius_tax_rate" schema="" catalog="sylius_dev" columns="zone_id"/>
+      <exported-key name="FK_E8B5ABF39F2C3FAB" table="sylius_zone_member" schema="" catalog="sylius_dev" columns="zone_id"/>
+      <exported-key name="FK_E8B5ABF34B0E929B" table="sylius_zone_member" schema="" catalog="sylius_dev" columns="belongs_to"/>
+    </table>
+    <table name="sylius_zone_member" schema="" catalog="sylius_dev" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="belongs_to" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="country_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="province_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="zone_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_E8B5ABF39F2C3FAB" columns="zone_id" ref-table="sylius_zone" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_E8B5ABF34B0E929B" columns="belongs_to" ref-table="sylius_zone" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_E8B5ABF3E946114A" columns="province_id" ref-table="sylius_province" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_E8B5ABF3F92F3E70" columns="country_id" ref-table="sylius_country" ref-schema="" ref-catalog="sylius_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_E8B5ABF34B0E929B" unique="false" columns="belongs_to"/>
+      <index name="IDX_E8B5ABF39F2C3FAB" unique="false" columns="zone_id"/>
+      <index name="IDX_E8B5ABF3E946114A" unique="false" columns="province_id"/>
+      <index name="IDX_E8B5ABF3F92F3E70" unique="false" columns="country_id"/>
+    </table>
+  </data-source>
+</component>
